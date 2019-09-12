@@ -93,7 +93,7 @@
 
 <body>
     <h1>MADGLAD</h1>
-    <nav>
+    <nav class="nav1">
         <button data-kategori="alle" class="valgt">Alle</button>
         <button data-kategori="fisk">Fisk</button>
         <button data-kategori="oksekød">Oksekød</button>
@@ -103,6 +103,9 @@
         <button data-kategori="vegetar">Vegetar</button>
         <button data-kategori="vegansk">Vegansk</button>
     </nav>
+    <section class="skjultdataset">
+        <button class="kategorier">Kategorier</button>
+    </section>
     <section id="item-liste"></section>
     <template>
         <article class="items">
@@ -124,9 +127,27 @@
         function start() {
             const filterKnapper = document.querySelectorAll("nav button");
             console.log(start);
+            hideNav();
             hentJson();
+
         }
 
+        function hideNav() {
+            console.log("hidenav");
+            document.querySelector(".nav1").classList.toggle("hidden");
+            document.querySelector(".kategorier").addEventListener("click", showNav);
+        }
+
+        function klikKategori() {
+            console.log("clickedkategori");
+            document.querySelector(".kategorier").addEventListener("click", showNav);
+        }
+
+        function showNav() {
+            console.log("shownav");
+            document.querySelector(".nav1").classList.toggle("hidden");
+            document.querySelector(".kategorier").addEventListener("click", hideNav);
+        }
 
 
         //funktion, der filtrerer personer (JSON)
