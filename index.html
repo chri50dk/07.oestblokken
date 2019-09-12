@@ -88,14 +88,99 @@
             font-size: 2rem;
             cursor: pointer;
         }
-
     </style>
 </head>
 
 <body>
+    <h1>MADGLAD</h1>
+    <nav>
+        <button data-kategori="alle" class="valgt">Alle</button>
+        <button data-kategori="fisk">Fisk</button>
+        <button data-kategori="oksekød">Oksekød</button>
+        <button data-kategori="lam">Lam</button>
+        <button data-kategori="svinekød">Svinekød</button>
+        <button data-kategori="fjerkræ">Fjerkræ</button>
+        <button data-kategori="vegetar">Vegetar</button>
+        <button data-kategori="vegansk">Vegansk</button>
+    </nav>
+    <section id="item-liste"></section>
+    <template>
+        <article class="items">
+            <h2 class="navn">Navn</h2>
+            <img class="billede" src="" alt="">
+        </article>
+
+    </template>
     <script>
+        let filter = "alle";
+        let menu = [];
+        const filterKnapper = document.querySelectorAll("nav button");
 
+        document.addEventListener("DOMContentLoaded", start);
+
+        filterKnapper.forEach(knap => knap.addEventListener("click", filtrer));
+
+        //først funktion, der kaldes efter DOM er loaded
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            console.log(start);
+            hentJson();
+        }
+
+
+
+        //funktion, der filtrerer personer (JSON)
+        function filtrer() {
+            document.querySelector(".valgt").classList.remove("valgt"); //fjern klassen valgt fra aktuel knap
+            this.classList.add("valgt"); //markér den nyvalgte knap
+            filter = this.dataset.kategori; //sæt variabel "filter" til aktuel værdi
+            console.log(filter);
+            visJson();
+        }
+
+
+        // const id = "1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U"
+        const url = "https://spreadsheets.google.com/feeds/list/1RfwhKjSE1crloWS6PYaeXJx_Pkc9uDIGfsD3pDi0Rxc/od6/public/values?alt=json";
+
+        //funktion, der henter data fra den valgte URL
+        async function hentJson() {
+
+            const response = await fetch(url);
+            console.log(response);
+            menu = await response.json()
+            visJson();
+
+        }
+
+        //funktion, der viser data (personer i dette filfælde) i liste view
+        function visJson() {
+            const skabelon = document.querySelector("template").content; //select indhold af HTML-skabelon (article)
+            const dest = document.querySelector("#item-liste"); //container til artikler med en person
+            dest.textContent = "";
+            console.log(menu);
+            menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
+                if (items.gsx$kategori.$t == filter || filter == "alle") { //tjek hvilket køn, personen har, og sammellign med filter
+                    const klon = skabelon.cloneNode(true);
+                    console.log(items);
+
+                    const h2 = klon.querySelector("h2");
+                    h2.textContent = items.gsx$navn.$t;
+
+
+                    const img = klon.querySelector("img");
+                    klon.querySelector(".billede").src = "img/" + items.gsx$billede.$t + ".jpg";
+                    img.alt = "Billede af " + items.navn;
+
+
+
+
+                    klon.querySelector(".items").addEventListener("click", () => {
+                        location.href = `detalje.html?id=${items.gsx$id.$t}`;
+                    });
+                    dest.appendChild(klon);
+                };
+
+            });
+        }
     </script>
-</body>
-
-</html>
+</body></html>
