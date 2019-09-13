@@ -6,6 +6,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <style>
+        /* BURGER MENU */
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            /* Gør den i de rette farver */
+
+            color: #cdcdcd;
+            font-family: "Avenir Next", "Avenir", sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: #232323;
+
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: tomato;
+        }
+
+        #menuToggle {
+            display: block;
+            position: fixed;
+            top: 50px;
+            left: 50px;
+
+            z-index: 1;
+
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #menuToggle input {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;
+
+            cursor: pointer;
+
+            opacity: 0;
+            /* gem dette */
+            z-index: 2;
+            /* placerer den ovenpå burgeren */
+
+            -webkit-touch-callout: none;
+        }
+
+        /*
+ * Span laver hamburgerens streger i HTML
+ */
+        #menuToggle span {
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            position: relative;
+
+            background: #cdcdcd;
+            border-radius: 3px;
+
+            z-index: 1;
+
+            transform-origin: 4px 0px;
+
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                opacity 0.55s ease;
+        }
+
+        #menuToggle span:first-child {
+            transform-origin: 0% 0%;
+        }
+
+        #menuToggle span:nth-last-child(2) {
+            transform-origin: 0% 100%;
+        }
+
+        /*
+     Transformerer burger til et kryds
+ */
+        #menuToggle input:checked~span {
+            opacity: 1;
+            transform: rotate(45deg) translate(-2px, -1px);
+            background: #232323;
+        }
+
+        /*
+ * Bøffen i burgeren forsvinder
+ */
+        #menuToggle input:checked~span:nth-last-child(3) {
+            opacity: 0;
+            transform: rotate(0deg) scale(0.2, 0.2);
+        }
+
+        /*
+ * Hver bolle i burgeren går hver sin vej til krydset
+ */
+        #menuToggle input:checked~span:nth-last-child(2) {
+            transform: rotate(-45deg) translate(0, -1px);
+        }
+
+        /*
+ * Gør den absolute i position
+ * i top venstre af skærmen
+ */
+        #menu {
+            position: absolute;
+            width: 300px;
+            margin: -100px 0 0 -50px;
+            padding: 50px;
+            padding-top: 125px;
+
+            background: #ededed;
+            list-style-type: none;
+            -webkit-font-smoothing: antialiased;
+            /* to stop flickering of text in safari */
+
+            transform-origin: 0% 0%;
+            transform: translate(-100%, 0);
+
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        }
+
+        #menu li {
+            padding: 10px 0;
+            font-size: 22px;
+        }
+
+        /*
+ * Burger menu slider ind fra venstre
+ */
+        #menuToggle input:checked~ul {
+            transform: none;
+        }
+
+
+
+        /* ---------------------- ORIGINAL CSS -----------------------*/
+
+
         /*****GENERELLE INDSTILLINGER****/
 
 
@@ -146,6 +292,60 @@
         }
     </style>
 </head>
+
+
+<nav role="navigation">
+    <div id="menuToggle">
+        <!--
+    En gemt/usynlig checkbox bruges som click-reciever her:
+    -->
+        <input type="checkbox" />
+
+
+        <!--Spans fungerer som boller og bøffer i burgeren. -->
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+
+            <a href="#">
+                <li><button data-kategori="alle" class="valgt">Alle</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="fisk">Fisk</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="oksekød">Oksekød</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="lam">Lam</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="svinekød">Svinekød</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="fjerkræ">Fjerkræ</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="vegetar">Vegetar</button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="vegansk">Vegansk</button></li>
+            </a>
+
+            <br>
+            <br>
+            <button class="køleskab">Tøm køleskabet</button>
+
+        </ul>
+    </div>
+</nav>
+
+
+
+
 
 <body>
     <section id="logo">
