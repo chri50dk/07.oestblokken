@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <style>
+        /*****GENERELLE INDSTILLINGER****/
+
+
         body {
             margin: 0;
             background-color: #fbfbfb;
@@ -34,18 +37,20 @@
             color: #8d8a8a;
         }
 
+        /*****GENERELLE INDSTILLINGER SLUT****/
+
 
         .items {
-            border: 1px solid silver;
+            /*border: 1px solid #8d8a8a;*/
             padding: 20px;
             cursor: pointer;
-            opacity: 0.8;
-            background-color: brown;
-            border-radius: 25px;
+            background-color: #f5eeec;
+            text-align: center;
         }
 
         .items:hover {
-            opacity: 1;
+            transform: scale(1.1);
+            transition: 0.5s;
         }
 
         #item-liste {
@@ -53,11 +58,11 @@
             margin: 1vw auto;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 1rem;
+            grid-gap: 1.5rem;
         }
 
         .valgt {
-            background-color: brown;
+            background-color: #f5eeec;
         }
 
         #detalje {
@@ -98,16 +103,31 @@
             width: 100%;
         }
 
-        button {
-            border-radius: 25px;
-            font-size: 2rem;
+        nav button {
+            border: 0;
+            color: #1c1c1c;
+            font-size: 1.5rem;
+            border-right: 1.5px solid #dbb6ac;
+            padding: 0 1rem;
+            0;
             cursor: pointer;
-            align-items: center;
+            background-color: #fbfbfb;
+
+
+        }
+
+        nav button:last-child {
+            border-right: 0;
+        }
+
+        nav button:hover {
+            color: #8d8a8a;
         }
 
         nav {
             text-align: center;
             background-color: #fbfbfb;
+            line-height: 5;
         }
 
         #kategorier {
@@ -121,8 +141,9 @@
                 margin-left: 15rem;
                 margin-right: 15rem;
             }
-        }
 
+            nav {}
+        }
     </style>
 </head>
 
@@ -131,26 +152,47 @@
         <img src="img/logo_med_tekst.svg" alt="billede af logo">
     </section>
     <nav class="nav1">
-        <button data-kategori="alle" class="valgt">Alle</button>
-        <button data-kategori="fisk">Fisk</button>
-        <button data-kategori="oksekød">Oksekød</button>
-        <button data-kategori="lam">Lam</button>
-        <button data-kategori="svinekød">Svinekød</button>
-        <button data-kategori="fjerkræ">Fjerkræ</button>
-        <button data-kategori="vegetar">Vegetar</button>
-        <button data-kategori="vegansk">Vegansk</button>
+        <button data-kategori="alle" class="valgt">
+            <h2>Alle</h2>
+        </button>
+        <button data-kategori="fisk">
+            <h2>Fisk</h2>
+        </button>
+        <button data-kategori="oksekød">
+            <h2>Oksekød</h2>
+        </button>
+        <button data-kategori="lam">
+            <h2>Lam</h2>
+        </button>
+        <button data-kategori="svinekød">
+            <h2>Svinekød</h2>
+        </button>
+        <button data-kategori="fjerkræ">
+            <h2>Fjerkræ</h2>
+        </button>
+        <button data-kategori="vegetar">
+            <h2>Vegetar</h2>
+        </button>
+        <button data-kategori="vegansk">
+            <h2>Vegansk</h2>
+        </button>
     </nav>
     <section id="knapper">
         <nav>
-            <button class="kategorier">Kategorier</button>
-            <button class="køleskab">Tøm køleskabet</button>
+            <button class="kategorier">
+                <h2>Kategorier</h2>
+            </button>
+            <button class="køleskab">
+                <h2>Tøm køleskabet</h2>
+            </button>
         </nav>
     </section>
     <section id="item-liste"></section>
     <template>
         <article class="items">
-            <h2 class="navn">Navn</h2>
+
             <img class="billede" src="" alt="">
+            <h2 class="navn">Navn</h2>
         </article>
 
     </template>
@@ -260,8 +302,5 @@
 
             });
         }
-
     </script>
-</body>
-
-</html>
+</body></html>

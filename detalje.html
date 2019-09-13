@@ -107,7 +107,7 @@
                 if (items.gsx$id.$t == id) { //tjek hvilket køn, personen har, og sammellign med filter
                     console.log(items);
                     document.querySelector("#detalje h2").textContent = items.gsx$navn.$t;
-                    document.querySelector("#detalje img").src = "imgs/large/" + items.gsx$billede.$t + ".jpg";
+                    document.querySelector("#detalje img").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
                     document.querySelector("#detalje img").alt = `Billede af ${items.gsx$billede.$t}`;
                     document.querySelector("#detalje .ingredienser").textContent = `Ingredienser: ${items.gsx$ingredienser.$t}`;
                 }
