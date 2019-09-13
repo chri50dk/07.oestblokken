@@ -150,27 +150,43 @@
         function start() {
             const filterKnapper = document.querySelectorAll("nav button");
             console.log(start);
-            hideNav();
+            document.querySelector(".kategorier").addEventListener("click", toggleKategori);
             hentJson();
 
         }
 
-        function hideNav() {
-            console.log("hidenav");
+        function toggleKategori() {
+            console.log("menu");
             document.querySelector(".nav1").classList.toggle("hidden");
-            document.querySelector(".kategorier").addEventListener("click", showNav);
+
+
+            let erSkjult = document.querySelector(".nav1").classList.contains("hidden");
+
+            if (erSkjult == true) {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            } else {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            }
         }
 
-        function klikKategori() {
-            console.log("clickedkategori");
-            document.querySelector(".kategorier").addEventListener("click", showNav);
-        }
+        /*       function hideNav() {
+                   console.log("hidenav");
+                   document.querySelector(".nav1").classList.toggle("hidden");
+                   document.querySelector(".kategorier").addEventListener("click", showNav);
+               }
 
-        function showNav() {
-            console.log("shownav");
-            document.querySelector(".nav1").classList.toggle("hidden");
-            document.querySelector(".kategorier").addEventListener("click", hideNav);
-        }
+               function klikKategori() {
+                   console.log("clickedkategori");
+                   document.querySelector(".kategorier").addEventListener("click", showNav);
+               }
+
+               function showNav() {
+                   console.log("shownav");
+                   document.querySelector(".nav1").classList.toggle("hidden");
+                   document.querySelector(".kategorier").addEventListener("click", hideNav);
+               }*/
 
 
         //funktion, der filtrerer personer (JSON)
