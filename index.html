@@ -21,14 +21,6 @@
             background-color: grey;
         }
 
-        nav {
-            text-align: center;
-        }
-
-        img {
-            width: 100%;
-        }
-
         .items {
             border: 1px solid silver;
             padding: 20px;
@@ -83,16 +75,43 @@
             background-color: brown;
         }
 
+        #logo {
+            grid-column: 1/4;
+            margin-left: 15rem;
+            margin-right: 15rem;
+        }
+
+        img {
+            width: 100%;
+        }
+
         button {
             border-radius: 25px;
             font-size: 2rem;
             cursor: pointer;
+            align-items: center;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        #kategorier {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+        #kategorier img {
+            width: 25vw;
+            height: 25vh;
         }
     </style>
 </head>
 
 <body>
-    <h1>MADGLAD</h1>
+    <section id="logo">
+        <img src="img/logo_med_tekst.png" alt="billede af logo">
+    </section>
     <nav class="nav1">
         <button data-kategori="alle" class="valgt">Alle</button>
         <button data-kategori="fisk">Fisk</button>
@@ -103,8 +122,11 @@
         <button data-kategori="vegetar">Vegetar</button>
         <button data-kategori="vegansk">Vegansk</button>
     </nav>
-    <section class="skjultdataset">
-        <button class="kategorier">Kategorier</button>
+    <section id="knapper">
+        <nav>
+            <button class="kategorier">Kategorier</button>
+            <button class="køleskab">Tøm køleskabet</button>
+        </nav>
     </section>
     <section id="item-liste"></section>
     <template>
