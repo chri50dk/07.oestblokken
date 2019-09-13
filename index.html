@@ -122,6 +122,7 @@
                 margin-right: 15rem;
             }
         }
+
     </style>
 </head>
 
@@ -166,6 +167,7 @@
         function start() {
             const filterKnapper = document.querySelectorAll("nav button");
             console.log(start);
+            document.querySelector(".nav1").classList.toggle("hidden");
             document.querySelector(".kategorier").addEventListener("click", toggleKategori);
             hentJson();
 
@@ -258,5 +260,8 @@
 
             });
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
