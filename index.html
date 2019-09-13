@@ -105,6 +105,7 @@
             width: 25vw;
             height: 25vh;
         }
+
     </style>
 </head>
 
@@ -211,7 +212,7 @@
 
 
                     const img = klon.querySelector("img");
-                    klon.querySelector(".billede").src = "img/" + items.gsx$billede.$t + ".jpg";
+                    klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
                     img.alt = "Billede af " + items.navn;
 
 
@@ -225,5 +226,8 @@
 
             });
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
