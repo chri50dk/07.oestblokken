@@ -14,8 +14,6 @@
 
             /* Gør den i de rette farver */
 
-            color: #cdcdcd;
-            font-family: "Avenir Next", "Avenir", sans-serif;
         }
 
         a {
@@ -23,10 +21,6 @@
             color: #232323;
 
             transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: tomato;
         }
 
         #menuToggle {
@@ -69,7 +63,7 @@
             margin-bottom: 5px;
             position: relative;
 
-            background: #cdcdcd;
+            background: #8d8a8a;
             border-radius: 3px;
 
             z-index: 1;
@@ -119,12 +113,13 @@
  */
         #menu {
             position: absolute;
-            width: 300px;
+            width: 270px;
             margin: -100px 0 0 -50px;
-            padding: 50px;
-            padding-top: 125px;
+            padding: 10px;
+            padding-top: 45px;
+            padding-bottom: 45px;
 
-            background: #ededed;
+            background: rgba(245, 238, 236, 0.99);
             list-style-type: none;
             -webkit-font-smoothing: antialiased;
             /* to stop flickering of text in safari */
@@ -136,9 +131,13 @@
         }
 
         #menu li {
-            padding: 10px 0;
-            font-size: 22px;
+            padding: 1px 0;
         }
+
+        #menu h2 {
+            font-size: 1.3rem;
+        }
+
 
         /*
  * Burger menu slider ind fra venstre
@@ -183,6 +182,7 @@
             color: #8d8a8a;
         }
 
+
         /*****GENERELLE INDSTILLINGER SLUT****/
 
 
@@ -208,7 +208,7 @@
         }
 
         .valgt {
-            background-color: #f5eeec;
+            text-decoration: underline;
         }
 
         #detalje {
@@ -232,17 +232,12 @@
             font-size: 4rem;
         }
 
-        #detalje .items {
-            width: 60vw;
-            min-height: auto;
-            margin: 4rem auto;
-            padding: 4rem;
-            background-color: brown;
-        }
 
         #logo {
-            grid-column: 1/4;
             background-color: #fbfbfb;
+            margin-left: 6rem;
+            margin-right: 5rem;
+            margin-top: 1rem;
         }
 
         img {
@@ -253,9 +248,8 @@
             border: 0;
             color: #1c1c1c;
             font-size: 1.5rem;
-            border-right: 1.5px solid #dbb6ac;
+            border-right: 1px solid #dbb6ac;
             padding: 0 1rem;
-            0;
             cursor: pointer;
             background-color: #fbfbfb;
 
@@ -268,6 +262,7 @@
 
         nav button:hover {
             color: #8d8a8a;
+            background-color: #dbb6ac;
         }
 
         nav {
@@ -282,13 +277,28 @@
         }
 
 
+        @media only screen and (min-width:750px) {
+            #logo {
+                margin-left: 10rem;
+                margin-right: 10rem;
+            }
+
+        }
+
+        @media only screen and (min-width:900px) {
+            #logo {
+                margin-left: 13rem;
+                margin-right: 13rem;
+            }
+
+        }
+
         @media only screen and (min-width:1200px) {
             #logo {
                 margin-left: 15rem;
                 margin-right: 15rem;
             }
 
-            nav {}
         }
     </style>
 </head>
@@ -311,33 +321,49 @@
         <ul id="menu">
 
             <a href="#">
-                <li><button data-kategori="alle" class="valgt">Alle</button></li>
+                <li><button data-kategori="alle" class="valgt">
+                        <h2>Alle</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="fisk">Fisk</button></li>
+                <li><button data-kategori="fisk">
+                        <h2>Fisk</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="oksekød">Oksekød</button></li>
+                <li><button data-kategori="oksekød">
+                        <h2>Oksekød</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="lam">Lam</button></li>
+                <li><button data-kategori="lam">
+                        <h2>Lam</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="svinekød">Svinekød</button></li>
+                <li><button data-kategori="svinekød">
+                        <h2>Svinekød</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="fjerkræ">Fjerkræ</button></li>
+                <li><button data-kategori="fjerkræ">
+                        <h2>Fjerkræ</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="vegetar">Vegetar</button></li>
+                <li><button data-kategori="vegetar">
+                        <h2>Vegetar</h2>
+                    </button></li>
             </a>
             <a href="#">
-                <li><button data-kategori="vegansk">Vegansk</button></li>
+                <li><button data-kategori="vegansk">
+                        <h2>Vegansk</h2>
+                    </button></li>
             </a>
 
-            <br>
-            <br>
-            <button class="køleskab">Tøm køleskabet</button>
+            <button class="køleskab">
+                <h2>Tøm køleskabet</h2>
+            </button>
 
         </ul>
     </div>
