@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:200&display=swap" rel="stylesheet">
     <title>MADGLAD</title>
     <style>
@@ -38,6 +38,7 @@
             font-family: 'Raleway', sans-serif;
             font: 1rem;
             color: #8d8a8a;
+            text-align: left;
         }
 
         .items {
@@ -114,6 +115,10 @@
             line-height: 1.5;
         }
 
+        em {
+            font-weight: 900;
+            font-style: normal;
+        }
 
 
         @media only screen and (min-width:750px) {
@@ -157,6 +162,7 @@
                 margin: 5rem auto;
             }
         }
+
     </style>
 </head>
 
@@ -211,10 +217,13 @@
                     document.querySelector("#detalje h1").textContent = items.gsx$navn.$t;
                     document.querySelector("#detalje img").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
                     document.querySelector("#detalje img").alt = `Billede af ${items.gsx$billede.$t}`;
-                    document.querySelector("#detalje .ingredienser").textContent = `Ingredienser: ${items.gsx$ingredienser.$t}`;
+                    document.querySelector("#detalje .ingredienser").innerHTML = `<em>Ingredienser:</em> <br> <br> ${items.gsx$ingredienser.$t}`;
                 }
             });
         }
+
     </script>
     <footer>@Copyright ØSTBLOKKEN V2 | <b>Kontakt:</b> Telefon: +45 46 46 00 00 | Mail: kea@kea.dk | <b>Adresse:</b> Lygten 16, 2400 Nordvest | <b>CVR:</b> 316 562 06 </footer>
-</body></html>
+</body>
+
+</html>
