@@ -62,35 +62,22 @@
         nav button {
             border: 0;
             color: #1c1c1c;
-            font-size: 2rem;
-            border-right: 1px solid #dbb6ac;
-            padding: 0 1rem;
-            cursor: pointer;
-            background-color: #fbfbfb;
-
-
-        }
-
-        nav a {
-            border: 0;
-            color: #1c1c1c;
             font-size: 1.5rem;
             border-right: 1px solid #dbb6ac;
             padding: 0 1rem;
             cursor: pointer;
             background-color: #fbfbfb;
-
-
+            text-decoration: none;
         }
 
+        a {
+            text-decoration: none;
+        }
 
         nav button:last-child {
             border-right: 0;
         }
 
-        nav a:last-child {
-            border-right: 0;
-        }
 
         nav button:hover {
             color: #8d8a8a;
@@ -164,11 +151,12 @@
             }
 
             #om {
-                margin: 8rem;
+                margin-top: 1rem;
+                margin-right: 8rem;
             }
 
             #om .tekst {
-                margin-left: 6rem;
+                margin-left: 8rem;
                 padding: 4rem;
             }
 
@@ -215,12 +203,14 @@
     <section id="knapper">
         <nav>
 
-            <a href="index.html"> <button class="forside">
+            <button class="forside"><a href="index.html">
                     <h2>Forside</h2>
-                </button></a>
-            <a href="om.html"> <button class="om">
+                </a>
+            </button>
+            <button class="om">
+                <a href="om.html">
                     <h2>Om os</h2>
-                </button></a>
+                </a></button>
         </nav>
     </section>
     <section id="item-liste"></section>
