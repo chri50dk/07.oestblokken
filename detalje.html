@@ -176,7 +176,7 @@
             <button class="luk">⤺</button>
             <h1></h1>
             <img src="" alt="">
-            <p class="ingredienser"> </p>
+            <ul class="ingredienser"> </ul>
         </article>
     </section>
     <script>
@@ -185,6 +185,7 @@
         console.log(id);
 
         let menu = [];
+
 
         const url = "https://spreadsheets.google.com/feeds/list/1RfwhKjSE1crloWS6PYaeXJx_Pkc9uDIGfsD3pDi0Rxc/od6/public/values?alt=json";
 
@@ -214,10 +215,18 @@
             menu.feed.entry.forEach(items => { //loop igennem JSON (items)
                 if (items.gsx$id.$t == id) { //tjek hvilket køn, personen har, og sammellign med filter
                     console.log(items);
+                    const ingrediensarray = items.gsx$ingredienser.$t.split(",");
+                    const ingListe = document.querySelector("#detalje .ingredienser");
+                    ingrediensarray.forEach(ingrediens => {
+                        const nyLi = document.createElement("li");
+                        nyLi.textContent = ingrediens;
+                        ingListe.appendChild(nyLi);
+                    })
+
                     document.querySelector("#detalje h1").textContent = items.gsx$navn.$t;
                     document.querySelector("#detalje img").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
                     document.querySelector("#detalje img").alt = `Billede af ${items.gsx$billede.$t}`;
-                    document.querySelector("#detalje .ingredienser").innerHTML = `<em>Ingredienser:</em> <br> <br> ${items.gsx$ingredienser.$t}`;
+
                 }
             });
         }

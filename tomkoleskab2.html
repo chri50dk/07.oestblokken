@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200&display=swap" rel="stylesheet">
+    <title>MADGLAD</title>
+    <style>
+        /*****GENERELLE INDSTILLINGER****/
+
+
+        body {
+            margin: 0;
+            background-color: #fbfbfb;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: #dbb6ac;
+            text-transform: uppercase;
+            font-weight: lighter;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 200;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            color: #1c1c1c;
+
+        }
+
+        p {
+            font-family: 'Raleway', sans-serif;
+            font: 1rem;
+            color: #8d8a8a;
+        }
+
+
+        /*****GENERELLE INDSTILLINGER SLUT****/
+        /* BURGER MENU */
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            /* Gør den i de rette farver */
+
+        }
+
+        a {
+            text-decoration: none;
+            color: #232323;
+
+            transition: color 0.3s ease;
+        }
+
+        #menuToggle {
+            display: block;
+            position: fixed;
+            top: 50px;
+            left: 50px;
+
+            z-index: 1;
+
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #menuToggle input {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;
+
+            cursor: pointer;
+
+            opacity: 0;
+            /* gem dette */
+            z-index: 2;
+            /* placerer den ovenpå burgeren */
+
+            -webkit-touch-callout: none;
+        }
+
+        /*
+ * Span laver hamburgerens streger i HTML
+ */
+        #menuToggle span {
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            position: relative;
+
+            background: #8d8a8a;
+            border-radius: 3px;
+
+            z-index: 1;
+
+            transform-origin: 4px 0px;
+
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                opacity 0.55s ease;
+        }
+
+        #menuToggle span:first-child {
+            transform-origin: 0% 0%;
+        }
+
+        #menuToggle span:nth-last-child(2) {
+            transform-origin: 0% 100%;
+        }
+
+        /*
+     Transformerer burger til et kryds
+ */
+        #menuToggle input:checked~span {
+            opacity: 1;
+            transform: rotate(45deg) translate(-2px, -1px);
+            background: #232323;
+        }
+
+        /*
+ * Bøffen i burgeren forsvinder
+ */
+        #menuToggle input:checked~span:nth-last-child(3) {
+            opacity: 0;
+            transform: rotate(0deg) scale(0.2, 0.2);
+        }
+
+        /*
+ * Hver bolle i burgeren går hver sin vej til krydset
+ */
+        #menuToggle input:checked~span:nth-last-child(2) {
+            transform: rotate(-45deg) translate(0, -1px);
+        }
+
+        /*
+ * Gør den absolute i position
+ * i top venstre af skærmen
+ */
+        #menu {
+            position: absolute;
+            width: 270px;
+            margin: -100px 0 0 -50px;
+            padding: 10px;
+            padding-top: 45px;
+            padding-bottom: 45px;
+
+            background: rgba(245, 238, 236, 0.99);
+            list-style-type: none;
+            -webkit-font-smoothing: antialiased;
+            /* to stop flickering of text in safari */
+
+            transform-origin: 0% 0%;
+            transform: translate(-100%, 0);
+
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        }
+
+        #menu li {
+            padding: 1px 0;
+        }
+
+        #menu h2 {
+            font-size: 1.3rem;
+        }
+
+
+        /*
+ * Burger menu slider ind fra venstre
+ */
+        #menuToggle input:checked~ul {
+            transform: none;
+        }
+
+
+
+        /* ---------------------- ORIGINAL CSS -----------------------*/
+
+
+        .fridgetext {
+            text-align: center;
+        }
+
+
+        .items {
+            /*border: 1px solid #8d8a8a;*/
+            padding: 20px;
+            cursor: pointer;
+            background-color: #f5eeec;
+            text-align: center;
+        }
+
+        .items:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
+        #item-liste {
+            width: 80vw;
+            margin: 1vw auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 1.5rem;
+        }
+
+        .valgt {
+            text-decoration: underline;
+        }
+
+        #detalje {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: ;
+            overflow: scroll;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #detalje .luk {
+            position: fixed;
+            top: 0;
+            right: 0;
+            font-size: 4rem;
+        }
+
+
+        #logo {
+            background-color: #fbfbfb;
+            margin-left: 6rem;
+            margin-right: 5rem;
+            margin-top: 1rem;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        nav button {
+            border: 0;
+            color: #1c1c1c;
+            font-size: 1.5rem;
+            border-right: 1px solid #dbb6ac;
+            padding: 0 1rem;
+            cursor: pointer;
+            background-color: #fbfbfb;
+
+
+        }
+
+        nav button:last-child {
+            border-right: 0;
+        }
+
+        nav button:hover {
+            color: #8d8a8a;
+            background-color: #dbb6ac;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #fbfbfb;
+            line-height: 5;
+        }
+
+        #kategorier {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+        footer {
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            background-color: rgba(141, 138, 138, 0.56);
+            color: #fbfbfb;
+            width: 100vw;
+            padding-top: 0.5rem;
+            padding-left: 0.5rem;
+            margin-top: 30px;
+
+            left: 0;
+            bottom: 0;
+            line-height: 1.5;
+        }
+
+
+        @media only screen and (min-width:750px) {
+            #logo {
+                margin-left: 10rem;
+                margin-right: 10rem;
+            }
+
+        }
+
+        @media only screen and (min-width:900px) {
+            #logo {
+                margin-left: 13rem;
+                margin-right: 13rem;
+            }
+
+        }
+
+        @media only screen and (min-width:1200px) {
+            #logo {
+                margin-left: 15rem;
+                margin-right: 15rem;
+            }
+
+        }
+    </style>
+</head>
+
+
+<nav role="navigation">
+    <div id="menuToggle">
+        <!--
+    En gemt/usynlig checkbox bruges som click-reciever her:
+    -->
+        <input type="checkbox" />
+
+
+        <!--Spans fungerer som boller og bøffer i burgeren. -->
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+
+            <a href="#">
+                <li><button data-kategori="alle" class="valgt">
+                        <h2>Alle</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="fisk">
+                        <h2>Fisk</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="oksekød">
+                        <h2>Oksekød</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="lam">
+                        <h2>Lam</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="svinekød">
+                        <h2>Svinekød</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="fjerkræ">
+                        <h2>Fjerkræ</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="vegetar">
+                        <h2>Vegetar</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="vegansk">
+                        <h2>Vegansk</h2>
+                    </button></li>
+            </a>
+
+            <button class="køleskab">
+                <h2>Tøm køleskabet</h2>
+            </button>
+
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+<body>
+    <section id="logo">
+        <a href="index.html"><img src="img/logo_med_tekst.svg" alt="billede af logo"></a>
+    </section>
+    <nav id="kategori-knapper">
+        <button data-kategori="alle" class="valgt">
+            <h2>Alle</h2>
+        </button>
+        <button data-kategori="fisk">
+            <h2>Fisk</h2>
+        </button>
+        <button data-kategori="oksekød">
+            <h2>Oksekød</h2>
+        </button>
+        <button data-kategori="lam">
+            <h2>Lam</h2>
+        </button>
+        <button data-kategori="svinekød">
+            <h2>Svinekød</h2>
+        </button>
+        <button data-kategori="fjerkræ">
+            <h2>Fjerkræ</h2>
+        </button>
+        <button data-kategori="vegetar">
+            <h2>Vegetar</h2>
+        </button>
+        <button data-kategori="vegansk">
+            <h2>Vegansk</h2>
+        </button>
+    </nav>
+    <nav id="menu-knapper">
+        <button class="kategorier">
+            <h2>Kategorier</h2>
+        </button>
+        <button class="køleskab">
+            <h2>Tøm køleskabet</h2>
+        </button>
+    </nav>
+
+    <p class="fridgetext">Vælg mad du har i dit køleskab og se hvilke retter du kan lave</p>
+
+    <nav id="ingrediens-knapper">
+        <h3>Grøntsager:
+            <button data-ingrediens=" løg" class="filter-knap valgt">Løg</button>
+            <button data-ingrediens=" blomkål" class="filter-knap">Blomkål</button>
+            <button data-ingrediens=" hvidløg" class="filter-knap">Hvidløg</button>
+            <button data-ingrediens=" tomater" class="filter-knap">Tomater</button>
+            <button data-ingrediens=" champignon" class="filter-knap">Champignon</button>
+            <button data-ingrediens=" tomater" class="filter-knap">Tomater</button>
+        </h3>
+        <h3>Kød og mejeri:
+            <button data-ingrediens="Kyllingebryst" class="filter-knap valgt">Kylling</button>
+            <button data-ingrediens=" mælk" class="filter-knap valgt">Mælk</button>
+            <button data-ingrediens=" æg" class="filter-knap">Æg</button>
+            <button data-ingrediens=" Lammekød" class="filter-knap valgt">Lam</button>
+            <button data-ingrediens="Laksefiletter" class="filter-knap valgt">Laks</button>
+
+        </h3>
+
+    </nav>
+
+
+
+    <section id="item-liste"></section>
+    <template>
+        <article class="items">
+
+            <img class="billede" src="" alt="">
+            <h2 class="navn">Navn</h2>
+        </article>
+
+    </template>
+    <script>
+        let filter = "alle";
+        let menu = [];
+        // let ingrediensValg = [];
+        let ingrediensValg;
+        const filterKnapper = document.querySelectorAll("#kategori-knapper button");
+        const ingrediensKnapper = document.querySelectorAll("#ingrediens-knapper button");
+
+        filterKnapper.forEach(knap => knap.addEventListener("click", filtrer));
+        ingrediensKnapper.forEach(knap => knap.addEventListener("click", findOpskrifter));
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        function findOpskrifter() {
+            //console.log(this.dataset.ingrediens);
+            ingrediensValg = this.dataset.ingrediens;
+            visJson();
+        }
+
+        //først funktion, der kaldes efter DOM er loaded
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            //console.log(start);
+            document.querySelector("#kategori-knapper").classList.toggle("hidden");
+            document.querySelector(".kategorier").addEventListener("click", toggleKategori);
+            hentJson();
+
+        }
+
+        function toggleKategori() {
+            //console.log("menu");
+            document.querySelector("#kategori-knapper").classList.toggle("hidden");
+
+
+            let erSkjult = document.querySelector("#kategori-knapper").classList.contains("hidden");
+
+            if (erSkjult == true) {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            } else {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            }
+        }
+
+        /*       function hideNav() {
+                   console.log("hidenav");
+                   document.querySelector(".nav1").classList.toggle("hidden");
+                   document.querySelector(".kategorier").addEventListener("click", showNav);
+               }
+
+               function klikKategori() {
+                   console.log("clickedkategori");
+                   document.querySelector(".kategorier").addEventListener("click", showNav);
+               }
+
+               function showNav() {
+                   console.log("shownav");
+                   document.querySelector(".nav1").classList.toggle("hidden");
+                   document.querySelector(".kategorier").addEventListener("click", hideNav);
+               }*/
+
+
+        //funktion, der filtrerer personer (JSON)
+        function filtrer() {
+            document.querySelector(".valgt").classList.remove("valgt"); //fjern klassen valgt fra aktuel knap
+            this.classList.add("valgt"); //markér den nyvalgte knap
+            filter = this.dataset.kategori; //sæt variabel "filter" til aktuel værdi
+            console.log(filter);
+            visJson();
+        }
+
+
+        // const id = "1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U"
+        const url = "https://spreadsheets.google.com/feeds/list/1RfwhKjSE1crloWS6PYaeXJx_Pkc9uDIGfsD3pDi0Rxc/od6/public/values?alt=json";
+
+        //funktion, der henter data fra den valgte URL
+        async function hentJson() {
+            const response = await fetch(url);
+            //console.log(response);
+            menu = await response.json()
+            visJson();
+
+        }
+
+        //funktion, der viser data (personer i dette filfælde) i liste view
+        function visJson() {
+            const skabelon = document.querySelector("template").content; //select indhold af HTML-skabelon (article)
+            const dest = document.querySelector("#item-liste"); //container til artikler med en person
+            dest.textContent = "";
+            //console.log(menu);
+            menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
+                const ingArray = items.gsx$ingredienser.$t.split(","); // laver ingredienser til et array
+                console.log(ingrediensValg, ingArray); //udskriver et array
+                if (ingArray.includes(ingrediensValg)) { //tjek hvilket køn, personen har, og sammellign med filter
+                    console.log(items);
+
+                    const klon = skabelon.cloneNode(true);
+                    //console.log(items);
+
+                    const h2 = klon.querySelector("h2");
+                    h2.textContent = items.gsx$navn.$t;
+
+                    const img = klon.querySelector("img");
+                    klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
+                    img.alt = "Billede af " + items.navn;
+
+                    klon.querySelector(".items").addEventListener("click", () => {
+                        location.href = `detalje.html?id=${items.gsx$id.$t}`;
+                    });
+                    dest.appendChild(klon);
+                };
+
+            });
+        }
+    </script>
+
+    <footer>@Copyright ØSTBLOKKEN V2 | <b>Kontakt:</b> Telefon: +45 46 46 00 00 | Mail: kea@kea.dk | <b>Adresse:</b> Lygten 16, 2400 Nordvest | <b>CVR:</b> 316 562 06 </footer>
+</body></html>
