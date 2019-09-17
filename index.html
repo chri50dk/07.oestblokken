@@ -11,7 +11,6 @@
     <style>
         /*****GENERELLE INDSTILLINGER****/
 
-
         body {
             margin: 0;
             background-color: #fbfbfb;
@@ -215,27 +214,10 @@
             text-decoration: underline;
         }
 
-        #detalje {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: ;
-            overflow: scroll;
-        }
 
         .hidden {
             display: none;
         }
-
-        #detalje .luk {
-            position: fixed;
-            top: 0;
-            right: 0;
-            font-size: 4rem;
-        }
-
 
         #logo {
             background-color: #fbfbfb;
@@ -290,7 +272,7 @@
             padding-top: 0.5rem;
             padding-left: 0.5rem;
             margin-top: 30px;
-
+            position: relative;
             left: 0;
             bottom: 0;
             line-height: 1.5;
@@ -315,8 +297,9 @@
 
         @media only screen and (min-width:1200px) {
             #logo {
-                margin-left: 15rem;
+                margin-left: 22rem;
                 margin-right: 15rem;
+                width: 50%;
             }
 
         }
@@ -431,6 +414,9 @@
             <button class="køleskab">
                 <h2>Tøm køleskabet</h2>
             </button>
+            <a href="om.html"> <button class="om">
+                    <h2>Om os</h2>
+                </button></a>
         </nav>
     </section>
     <section id="item-liste"></section>
@@ -476,23 +462,6 @@
 
             }
         }
-
-        /*       function hideNav() {
-                   console.log("hidenav");
-                   document.querySelector(".nav1").classList.toggle("hidden");
-                   document.querySelector(".kategorier").addEventListener("click", showNav);
-               }
-
-               function klikKategori() {
-                   console.log("clickedkategori");
-                   document.querySelector(".kategorier").addEventListener("click", showNav);
-               }
-
-               function showNav() {
-                   console.log("shownav");
-                   document.querySelector(".nav1").classList.toggle("hidden");
-                   document.querySelector(".kategorier").addEventListener("click", hideNav);
-               }*/
 
 
         //funktion, der filtrerer personer (JSON)

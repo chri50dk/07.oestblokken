@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200&display=swap" rel="stylesheet">
+    <title>Om</title>
+    <style>
+        /*****GENERELLE INDSTILLINGER****/
+
+
+        body {
+            margin: 0;
+            background-color: #fbfbfb;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #dbb6ac;
+            text-transform: uppercase;
+            font-weight: lighter;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 200;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            color: #1c1c1c;
+
+        }
+
+        p {
+            font-family: 'Raleway', sans-serif;
+            font: 1rem;
+            color: #8d8a8a;
+        }
+
+
+        /*****GENERELLE INDSTILLINGER SLUT****/
+
+
+        .hidden {
+            display: none;
+        }
+
+        #logo {
+            background-color: #fbfbfb;
+            margin-left: 6rem;
+            margin-right: 5rem;
+            margin-top: 1rem;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        nav button {
+            border: 0;
+            color: #1c1c1c;
+            font-size: 1.5rem;
+            border-right: 1px solid #dbb6ac;
+            padding: 0 1rem;
+            cursor: pointer;
+            background-color: #fbfbfb;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        nav button:last-child {
+            border-right: 0;
+        }
+
+
+        nav button:hover {
+            color: #8d8a8a;
+            background-color: #dbb6ac;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #fbfbfb;
+            line-height: 5;
+        }
+
+        footer {
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.8rem;
+            background-color: rgba(141, 138, 138, 0.56);
+            color: #fbfbfb;
+            width: 100vw;
+            padding-top: 0.5rem;
+            padding-left: 0.5rem;
+            margin-top: 30px;
+            position: relative;
+            left: 0;
+            bottom: 0;
+            line-height: 1.5;
+        }
+
+        #om p {
+            line-height: 1.5;
+        }
+
+        #om .tekst {
+            background-color: #f5eeec;
+            margin: 2rem;
+            padding: 2rem;
+        }
+
+
+        @media only screen and (min-width:600px) {
+            #om {
+                margin: 4rem;
+            }
+
+        }
+
+        @media only screen and (min-width:750px) {
+            #logo {
+                margin-left: 10rem;
+                margin-right: 10rem;
+            }
+
+            #om {
+                margin: 6rem;
+            }
+
+            #om .tekst {
+                margin: 4rem;
+                padding: 3rem;
+            }
+
+        }
+
+        @media only screen and (min-width:900px) {
+
+            #logo {
+                margin-left: 15rem;
+            }
+
+            #om {
+                margin-top: 1rem;
+                margin-right: 8rem;
+            }
+
+            #om .tekst {
+                margin-left: 8rem;
+                padding: 4rem;
+            }
+
+            #om h1 {
+                text-align: center;
+            }
+
+        }
+
+        @media only screen and (min-width:1200px) {
+
+            #logo {
+                margin-left: 22rem;
+                margin-right: 15rem;
+                width: 50%;
+            }
+
+            #om {
+                margin-left: 10rem;
+                margin-right: 10rem;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            #om .tekst {
+                margin-left: 15rem;
+                margin-right: 15rem;
+                padding: 4rem;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <section id="logo">
+        <a href="index.html"><img src="img/logo_med_tekst.svg" alt="billede af logo"></a>
+    </section>
+
+    <section id="knapper">
+        <nav>
+
+            <button class="forside"><a href="index.html">
+                    <h2>Forside</h2>
+                </a>
+            </button>
+            <button class="om">
+                <a href="om.html">
+                    <h2>Om os</h2>
+                </a></button>
+        </nav>
+    </section>
+    <section id="item-liste"></section>
+    <template>
+        <article class="items">
+
+            <img class="billede" src="" alt="">
+            <h2 class="navn">Navn</h2>
+        </article>
+
+    </template>
+
+    <section id="om">
+        <h1>Hvem er vi og hvad står vi for? </h1>
+        <div class="tekst">
+            <h2>MADGLAD</h2>
+            <p>Idéen omkring 'MADGLAD' er, at man kan finde retter ud fra ingredienser du har i dit køleskab. 'MADGLAD' skal give inspiration til retter, når man selv er løbet tør for idéer, og er træt af at lave den samme ret. Og samtidig modarbejder man madspild, ved at lave retter med de ingredienser man i forvejen har, så man ikke skal smide dem ud. </p>
+        </div>
+
+    </section>
+    <script>
+        let filter = "alle";
+        let menu = [];
+        const filterKnapper = document.querySelectorAll("nav button");
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        filterKnapper.forEach(knap => knap.addEventListener("click", filtrer));
+
+        //først funktion, der kaldes efter DOM er loaded
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            console.log(start);
+            document.querySelector(".nav1").classList.toggle("hidden");
+            document.querySelector(".kategorier").addEventListener("click", toggleKategori);
+            hentJson();
+
+        }
+
+        function toggleKategori() {
+            console.log("menu");
+            document.querySelector(".nav1").classList.toggle("hidden");
+
+
+            let erSkjult = document.querySelector(".nav1").classList.contains("hidden");
+
+            if (erSkjult == true) {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            } else {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            }
+        }
+    </script>
+
+    <footer>@Copyright ØSTBLOKKEN V2 | <b>Kontakt:</b> Telefon: +45 46 46 00 00 | Mail: kea@kea.dk | <b>Adresse:</b> Lygten 16, 2400 Nordvest | <b>CVR:</b> 316 562 06 </footer>
+
+</body></html>
