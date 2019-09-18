@@ -318,10 +318,9 @@
 
         }
 
-<<<<<<< HEAD
-=======
+        <<<<<<< HEAD=======
         /****MEDIA SLUT****/
->>>>>>> origin/master
+        >>>>>>>origin/master
     </style>
 </head>
 
@@ -465,7 +464,7 @@
             hentJson();
 
         }
-
+        //funktion, der putter "hidden"-classen på menuen, når man trykker på "kategorier"
         function toggleKategori() {
             console.log("menu");
             document.querySelector(".nav1").classList.toggle("hidden");
@@ -483,7 +482,7 @@
         }
 
 
-        //funktion, der filtrerer personer (JSON)
+        //funktion, der filtrerer retter (JSON)
         function filtrer() {
             document.querySelector(".valgt").classList.remove("valgt"); //fjern klassen valgt fra aktuel knap
             this.classList.add("valgt"); //markér den nyvalgte knap
@@ -506,14 +505,14 @@
 
         }
 
-        //funktion, der viser data (personer i dette filfælde) i liste view
+        //funktion, der viser JSON liste-viewet over alle retter
         function visJson() {
             const skabelon = document.querySelector("template").content; //select indhold af HTML-skabelon (article)
-            const dest = document.querySelector("#item-liste"); //container til artikler med en person
+            const dest = document.querySelector("#item-liste"); //container til artikler med en ret
             dest.textContent = "";
             console.log(menu);
             menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
-                if (items.gsx$kategori.$t == filter || filter == "alle") { //tjek hvilket køn, personen har, og sammellign med filter
+                if (items.gsx$kategori.$t == filter || filter == "alle") { //tjek hvilken ingrediens, retten har, og sammenlign med filteret
                     const klon = skabelon.cloneNode(true);
                     console.log(items);
 
@@ -536,10 +535,7 @@
 
             });
         }
-
     </script>
 
     <footer>@Copyright ØSTBLOKKEN V2 | <b>Kontakt:</b> Telefon: +45 46 46 00 00 | Mail: kea@kea.dk | <b>Adresse:</b> Lygten 16, 2400 Nordvest | <b>CVR:</b> 316 562 06 </footer>
-</body>
-
-</html>
+</body></html>
