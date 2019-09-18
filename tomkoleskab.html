@@ -187,7 +187,9 @@
         /* ---------------------- ORIGINAL CSS -----------------------*/
 
 
-
+        .fridgetext {
+            text-align: center;
+        }
 
 
         .items {
@@ -286,11 +288,11 @@
             font-size: 0.8rem;
             background-color: rgba(141, 138, 138, 0.56);
             color: #fbfbfb;
-            width: 100%;
+            width: 100vw;
             padding-top: 0.5rem;
             padding-left: 0.5rem;
             margin-top: 30px;
-            ;
+
             left: 0;
             bottom: 0;
             line-height: 1.5;
@@ -320,6 +322,264 @@
             }
 
         }
-
     </style>
 </head>
+
+
+<nav role="navigation">
+    <div id="menuToggle">
+        <!--
+    En gemt/usynlig checkbox bruges som click-reciever her:
+    -->
+        <input type="checkbox" />
+
+
+        <!--Spans fungerer som boller og bøffer i burgeren. -->
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+
+            <a href="#">
+                <li><button data-kategori="alle" class="valgt">
+                        <h2>Alle</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="fisk">
+                        <h2>Fisk</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="oksekød">
+                        <h2>Oksekød</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="lam">
+                        <h2>Lam</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="svinekød">
+                        <h2>Svinekød</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="fjerkræ">
+                        <h2>Fjerkræ</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="vegetar">
+                        <h2>Vegetar</h2>
+                    </button></li>
+            </a>
+            <a href="#">
+                <li><button data-kategori="vegansk">
+                        <h2>Vegansk</h2>
+                    </button></li>
+            </a>
+
+            <button class="køleskab">
+                <h2>Tøm køleskabet</h2>
+            </button>
+
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+<body>
+    <section id="logo">
+        <a href="index.html"><img src="img/logo_med_tekst.svg" alt="billede af logo"></a>
+    </section>
+
+
+
+
+    <nav id="menu-knapper">
+        <button class="kategorier" onclick="window.location.href = 'index.html';">
+            <h2>Kategorier</h2>
+        </button>
+        <button class="køleskab">
+            <h2>Tøm køleskabet</h2>
+        </button>
+    </nav>
+
+    <p class="fridgetext">Vælg mad du har i dit køleskab og se hvilke retter du kan lave</p>
+
+    <nav id="ingrediens-knapper">
+        <h3>Grøntsager:
+            <button data-ingrediens="løg" class="filter-knap valgt">Løg</button>
+            <button data-ingrediens="blomkål" class="filter-knap">Blomkål</button>
+            <button data-ingrediens="hvidløg" class="filter-knap">Hvidløg</button>
+            <button data-ingrediens="tomater" class="filter-knap">Tomater</button>
+            <button data-ingrediens="champignon" class="filter-knap">Champignon</button>
+            <button data-ingrediens="tomater" class="filter-knap">Tomater</button>
+        </h3>
+        <h3>Kød og mejeri:
+            <button data-ingrediens="kyllingebryst" class="filter-knap valgt">Kylling</button>
+            <button data-ingrediens="mælk" class="filter-knap valgt">Mælk</button>
+            <button data-ingrediens="æg" class="filter-knap">Æg</button>
+            <button data-ingrediens="lammekød" class="filter-knap valgt">Lam</button>
+            <button data-ingrediens="laksefiletter" class="filter-knap valgt">Laks</button>
+            <button data-ingrediens="pølser" class="filter-knap valgt">Pølser</button>
+            <button data-ingrediens="laksefiletter" class="filter-knap valgt">Laks</button>
+
+        </h3>
+
+    </nav>
+
+
+
+    <section id="item-liste"></section>
+    <template>
+        <article class="items">
+
+            <img class="billede" src="" alt="">
+            <h2 class="navn">Navn</h2>
+        </article>
+
+    </template>
+    <script>
+        let filter = "alle";
+        let menu = [];
+        // let ingrediensValg = [];
+        let ingrediensValg;
+        const filterKnapper = document.querySelectorAll("#kategori-knapper button");
+        const ingrediensKnapper = document.querySelectorAll("#ingrediens-knapper button");
+
+        filterKnapper.forEach(knap => knap.addEventListener("click", filtrer));
+        ingrediensKnapper.forEach(knap => knap.addEventListener("click", findOpskrifter));
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        function findOpskrifter() {
+            //console.log(this.dataset.ingrediens);
+            ingrediensValg = this.dataset.ingrediens;
+            visJson();
+        }
+
+        //først funktion, der kaldes efter DOM er loaded
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            //console.log(start);
+            document.querySelector("#kategori-knapper").classList.toggle("hidden");
+            document.querySelector(".kategorier").addEventListener("click", toggleKategori);
+            hentJson();
+
+        }
+
+        function toggleKategori() {
+            //console.log("menu");
+            document.querySelector("#kategori-knapper").classList.toggle("hidden");
+
+
+            let erSkjult = document.querySelector("#kategori-knapper").classList.contains("hidden");
+
+            if (erSkjult == true) {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            } else {
+                document.querySelector(".kategorier").addEventListener("click", toggleKategori)
+
+            }
+        }
+
+        /*       function hideNav() {
+                   console.log("hidenav");
+                   document.querySelector(".nav1").classList.toggle("hidden");
+                   document.querySelector(".kategorier").addEventListener("click", showNav);
+               }
+
+               function klikKategori() {
+                   console.log("clickedkategori");
+                   document.querySelector(".kategorier").addEventListener("click", showNav);
+               }
+
+               function showNav() {
+                   console.log("shownav");
+                   document.querySelector(".nav1").classList.toggle("hidden");
+                   document.querySelector(".kategorier").addEventListener("click", hideNav);
+               }*/
+
+
+        //funktion, der filtrerer personer (JSON)
+        function filtrer() {
+            aktuelt = this.textContent;
+            h1.textContent = aktuelt;
+            if (this.dataset.filter == "alle") {
+                filterKnapper.forEach(knap => knap.classList.remove("valgt"));
+                this.classList.add("valgt");
+                filter = ["alle"];
+            } else {
+                filterKnapper[0].classList.remove("valgt");
+                if (filter.includes("alle")) {
+                    filter.shift();
+                }
+                if (this.classList.contains("valgt")) {
+                    this.classList.remove("valgt");
+                    filter = filter.filter(item => item != this.dataset.filter); // filtrer det valgte filter fra filterlisten
+                } else {
+                    this.classList.add("valgt");
+                    filter.push(this.dataset.filter);
+                }
+            }
+            vis(data);
+            console.log(this);
+        }
+
+
+
+        // const id = "1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U"
+        const url = "https://spreadsheets.google.com/feeds/list/1RfwhKjSE1crloWS6PYaeXJx_Pkc9uDIGfsD3pDi0Rxc/od6/public/values?alt=json";
+
+        //funktion, der henter data fra den valgte URL
+        async function hentJson() {
+            const response = await fetch(url);
+            //console.log(response);
+            menu = await response.json()
+            visJson();
+
+        }
+
+        //funktion, der viser data (personer i dette filfælde) i liste view
+        function visJson() {
+            const skabelon = document.querySelector("template").content; //select indhold af HTML-skabelon (article)
+            const dest = document.querySelector("#item-liste"); //container til artikler med en person
+            dest.textContent = "";
+            //console.log(menu);
+            menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
+                const ingArray = items.gsx$ingredienser.$t.split(","); // laver ingredienser til et array
+                //console.log(ingrediensValg, ingArray); //udskriver et array
+                if (ingArray.includes(ingrediensValg)) { //tjek hvilket køn, personen har, og sammellign med filter
+                    console.log(items);
+
+                    const klon = skabelon.cloneNode(true);
+                    //console.log(items);
+
+                    const h2 = klon.querySelector("h2");
+                    h2.textContent = items.gsx$navn.$t;
+
+                    const img = klon.querySelector("img");
+                    klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
+                    img.alt = "Billede af " + items.navn;
+
+                    klon.querySelector(".items").addEventListener("click", () => {
+                        location.href = `detalje.html?id=${items.gsx$id.$t}`;
+                    });
+                    dest.appendChild(klon);
+                };
+
+            });
+        }
+    </script>
+
+    <footer>@Copyright ØSTBLOKKEN V2 | <b>Kontakt:</b> Telefon: +45 46 46 00 00 | Mail: kea@kea.dk | <b>Adresse:</b> Lygten 16, 2400 Nordvest | <b>CVR:</b> 316 562 06 </footer>
+</body></html>
