@@ -39,9 +39,50 @@
             color: #8d8a8a;
         }
 
+        img {
+            width: 100%;
+        }
+
+
+        #kategorier {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+
+        .items {
+            padding: 20px;
+            cursor: pointer;
+            background-color: #f5eeec;
+            text-align: center;
+        }
+
+        .items:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
+        #item-liste {
+            width: 80vw;
+            margin: 1vw auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 1.5rem;
+        }
+
+        .valgt {
+            text-decoration: underline;
+        }
+
+
+        .hidden {
+            display: none;
+        }
 
         /*****GENERELLE INDSTILLINGER SLUT****/
-        /* BURGER MENU */
+
+
+        /****BURGER MENU****/
 
         body {
             margin: 0;
@@ -182,53 +223,9 @@
         }
 
 
+        /****BURGERMENU SLUT****/
 
-        /* ---------------------- ORIGINAL CSS -----------------------*/
-
-
-
-
-
-        .items {
-            /*border: 1px solid #8d8a8a;*/
-            padding: 20px;
-            cursor: pointer;
-            background-color: #f5eeec;
-            text-align: center;
-        }
-
-        .items:hover {
-            transform: scale(1.1);
-            transition: 0.5s;
-        }
-
-        #item-liste {
-            width: 80vw;
-            margin: 1vw auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 1.5rem;
-        }
-
-        .valgt {
-            text-decoration: underline;
-        }
-
-
-        .hidden {
-            display: none;
-        }
-
-        #logo {
-            background-color: #fbfbfb;
-            margin-left: 6rem;
-            margin-right: 5rem;
-            margin-top: 1rem;
-        }
-
-        img {
-            width: 100%;
-        }
+        /****NAV****/
 
         nav button {
             border: 0;
@@ -238,8 +235,6 @@
             padding: 0 1rem;
             cursor: pointer;
             background-color: #fbfbfb;
-
-
         }
 
         nav button:last-child {
@@ -257,10 +252,23 @@
             line-height: 5;
         }
 
-        #kategorier {
-            display: grid;
-            grid-template-rows: 1fr 1fr 1fr;
+        /****NAV SLUT****/
+
+
+        /****LOGO****/
+
+        #logo {
+            background-color: #fbfbfb;
+            margin-left: 6rem;
+            margin-right: 5rem;
+            margin-top: 1rem;
         }
+
+
+        /****LOGO SLUT****/
+
+
+        /****FOOTER****/
 
         footer {
             text-align: center;
@@ -277,6 +285,12 @@
             bottom: 0;
             line-height: 1.5;
         }
+
+
+        /****FOOTER SLUT****/
+
+
+        /****MEDIA****/
 
 
         @media only screen and (min-width:750px) {
@@ -303,6 +317,8 @@
             }
 
         }
+
+        /****MEDIA SLUT****/
     </style>
 </head>
 
