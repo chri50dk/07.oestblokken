@@ -11,7 +11,6 @@
     <style>
         /*****GENERELLE INDSTILLINGER****/
 
-
         body {
             margin: 0;
             background-color: #fbfbfb;
@@ -23,6 +22,8 @@
             color: #dbb6ac;
             text-transform: uppercase;
             font-weight: lighter;
+            text-decoration: underline;
+            margin-bottom: 0;
         }
 
         h2 {
@@ -38,11 +39,61 @@
             font-family: 'Raleway', sans-serif;
             font: 1rem;
             color: #8d8a8a;
+
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .fridgetext {
+            text-align: center;
+            line-height: 3rem;
+        }
+
+
+        .items {
+            padding: 20px;
+            cursor: pointer;
+            background-color: #f5eeec;
+            text-align: center;
+        }
+
+        .items:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
+        #item-liste {
+            width: 80vw;
+            margin: 1vw auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 1.5rem;
+        }
+
+        .valgt {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+        #kategorier {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
         }
 
 
         /*****GENERELLE INDSTILLINGER SLUT****/
-        /* BURGER MENU */
+
+        /****BURGER MENU****/
 
         body {
             margin: 0;
@@ -183,61 +234,10 @@
         }
 
 
-
-        /* ---------------------- ORIGINAL CSS -----------------------*/
-
-
-        .fridgetext {
-            text-align: center;
-        }
+        /****BURGERMENU SLUT****/
 
 
-        .items {
-            /*border: 1px solid #8d8a8a;*/
-            padding: 20px;
-            cursor: pointer;
-            background-color: #f5eeec;
-            text-align: center;
-        }
-
-        .items:hover {
-            transform: scale(1.1);
-            transition: 0.5s;
-        }
-
-        #item-liste {
-            width: 80vw;
-            margin: 1vw auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 1.5rem;
-        }
-
-        .valgt {
-            text-decoration: underline;
-        }
-
-        #detalje {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: ;
-            overflow: scroll;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #detalje .luk {
-            position: fixed;
-            top: 0;
-            right: 0;
-            font-size: 4rem;
-        }
-
+        /****LOGO****/
 
         #logo {
             background-color: #fbfbfb;
@@ -246,9 +246,9 @@
             margin-top: 1rem;
         }
 
-        img {
-            width: 100%;
-        }
+        /****LOGO SLUT****/
+
+        /****NAV*****/
 
         nav button {
             border: 0;
@@ -258,7 +258,6 @@
             padding: 0 1rem;
             cursor: pointer;
             background-color: #fbfbfb;
-
 
         }
 
@@ -277,11 +276,28 @@
             line-height: 5;
         }
 
-        #kategorier {
-            display: grid;
-            grid-template-rows: 1fr 1fr 1fr;
+        #ingrediens-knapper {
+            text-align: left;
+            line-height: 2.5;
+            margin: 1rem;
         }
 
+        #ingrediens-knapper h1 {
+            font-size: 1.9rem;
+        }
+
+        #ingrediens-knapper h2 {
+            font-size: 1.3rem;
+        }
+
+        .filter-knap {
+            border-right: none;
+
+        }
+
+        /****NAV SLUT*****/
+
+        /****FOOTER****/
         footer {
             text-align: center;
             font-family: 'Raleway', sans-serif;
@@ -292,17 +308,26 @@
             padding-top: 0.5rem;
             padding-left: 0.5rem;
             margin-top: 30px;
-
+            position: relative;
             left: 0;
             bottom: 0;
             line-height: 1.5;
         }
 
 
+        /****FOOTER SLUT****/
+
+        /****MEDIA****/
+
+
         @media only screen and (min-width:750px) {
             #logo {
                 margin-left: 10rem;
                 margin-right: 10rem;
+            }
+
+            #ingrediens-knapper {
+                margin-left: 5rem;
             }
 
         }
@@ -317,11 +342,18 @@
 
         @media only screen and (min-width:1200px) {
             #logo {
-                margin-left: 15rem;
+                margin-left: 22rem;
                 margin-right: 15rem;
+                width: 50%;
+            }
+
+            #ingrediens-knapper {
+                margin-left: 10rem;
             }
 
         }
+
+        /****MEDIA SLUT****/
     </style>
 </head>
 
@@ -392,9 +424,6 @@
 </nav>
 
 
-
-
-
 <body>
     <section id="logo">
         <a href="index.html"><img src="img/logo_med_tekst.svg" alt="billede af logo"></a>
@@ -440,24 +469,45 @@
     <p class="fridgetext">Vælg mad du har i dit køleskab og se hvilke retter du kan lave</p>
 
     <nav id="ingrediens-knapper">
-        <h3>Grøntsager:
-            <button data-ingrediens="løg" class="filter-knap valgt">Løg</button>
-            <button data-ingrediens="blomkål" class="filter-knap">Blomkål</button>
-            <button data-ingrediens="hvidløg" class="filter-knap">Hvidløg</button>
-            <button data-ingrediens="tomater" class="filter-knap">Tomater</button>
-            <button data-ingrediens="champignon" class="filter-knap">Champignon</button>
-            <button data-ingrediens="tomater" class="filter-knap">Tomater</button>
-        </h3>
-        <h3>Kød og mejeri:
-            <button data-ingrediens="kyllingebryst" class="filter-knap valgt">Kylling</button>
-            <button data-ingrediens="mælk" class="filter-knap valgt">Mælk</button>
-            <button data-ingrediens="æg" class="filter-knap">Æg</button>
-            <button data-ingrediens="lammekød" class="filter-knap valgt">Lam</button>
-            <button data-ingrediens="laksefiletter" class="filter-knap valgt">Laks</button>
-            <button data-ingrediens="pølser" class="filter-knap valgt">Pølser</button>
-            <button data-ingrediens="laksefiletter" class="filter-knap valgt">Laks</button>
+        <h1>Grøntsager:</h1>
+        <button data-ingrediens="løg" class="filter-knap">
+            <h2>Løg</h2>
+        </button>
+        <button data-ingrediens="blomkål" class="filter-knap">
+            <h2>Blomkål</h2>
+        </button>
+        <button data-ingrediens="hvidløg" class="filter-knap">
+            <h2>Hvidløg</h2>
+        </button>
+        <button data-ingrediens="tomater" class="filter-knap">
+            <h2>Tomater</h2>
+        </button>
+        <button data-ingrediens="champignon" class="filter-knap">
+            <h2>Champignon</h2>
+        </button>
+        <button data-ingrediens="tomater" class="filter-knap">
+            <h2>Tomater</h2>
+        </button>
 
-        </h3>
+        <h1>Kød og mejeri:</h1>
+        <button data-ingrediens="kyllingebryst" class="filter-knap">
+            <h2>Kylling</h2>
+        </button>
+        <button data-ingrediens="mælk" class="filter-knap">
+            <h2>Mælk</h2>
+        </button>
+        <button data-ingrediens="æg" class="filter-knap">
+            <h2>Æg</h2>
+        </button>
+        <button data-ingrediens="lammekød" class="filter-knap">
+            <h2>Lam</h2>
+        </button>
+        <button data-ingrediens="laksefiletter" class="filter-knap">
+            <h2>Laks</h2>
+        </button>
+        <button data-ingrediens="pølser" class="filter-knap">
+            <h2>Pølser</h2>
+        </button>
 
     </nav>
 
