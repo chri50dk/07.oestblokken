@@ -451,6 +451,8 @@
             <button data-ingrediens="æg" class="filter-knap">Æg</button>
             <button data-ingrediens="lammekød" class="filter-knap valgt">Lam</button>
             <button data-ingrediens="laksefiletter" class="filter-knap valgt">Laks</button>
+            <button data-ingrediens="pølser" class="filter-knap valgt">Pølser</button>
+            <button data-ingrediens="laksefiletter" class="filter-knap valgt">Laks</button>
 
         </h3>
 
@@ -532,12 +534,29 @@
 
         //funktion, der filtrerer personer (JSON)
         function filtrer() {
-            document.querySelector(".valgt").classList.remove("valgt"); //fjern klassen valgt fra aktuel knap
-            this.classList.add("valgt"); //markér den nyvalgte knap
-            filter = this.dataset.kategori; //sæt variabel "filter" til aktuel værdi
-            console.log(filter);
-            visJson();
+            aktuelt = this.textContent;
+            h1.textContent = aktuelt;
+            if (this.dataset.filter == "alle") {
+                filterKnapper.forEach(knap => knap.classList.remove("valgt"));
+                this.classList.add("valgt");
+                filter = ["alle"];
+            } else {
+                filterKnapper[0].classList.remove("valgt");
+                if (filter.includes("alle")) {
+                    filter.shift();
+                }
+                if (this.classList.contains("valgt")) {
+                    this.classList.remove("valgt");
+                    filter = filter.filter(item => item != this.dataset.filter); // filtrer det valgte filter fra filterlisten
+                } else {
+                    this.classList.add("valgt");
+                    filter.push(this.dataset.filter);
+                }
+            }
+            vis(data);
+            console.log(this);
         }
+
 
 
         // const id = "1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U"
@@ -560,7 +579,7 @@
             //console.log(menu);
             menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
                 const ingArray = items.gsx$ingredienser.$t.split(","); // laver ingredienser til et array
-                console.log(ingrediensValg, ingArray); //udskriver et array
+                //console.log(ingrediensValg, ingArray); //udskriver et array
                 if (ingArray.includes(ingrediensValg)) { //tjek hvilket køn, personen har, og sammellign med filter
                     console.log(items);
 
