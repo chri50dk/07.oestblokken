@@ -356,7 +356,6 @@
         }
 
         /****MEDIA SLUT****/
-
     </style>
 </head>
 
@@ -608,23 +607,22 @@
 
     </template>
     <script>
-        let filter = "alle";
         let menu = [];
-        // let ingrediensValg = [];
-        let ingrediensValg;
+        let ingrediensValg = [];
+        //let ingrediensValg;
         const filterKnapper = document.querySelectorAll("#kategori-knapper button");
         const ingrediensKnapper = document.querySelectorAll("#ingrediens-knapper button");
 
-        filterKnapper.forEach(knap => knap.addEventListener("click", filtrer));
+        //filterKnapper.forEach(knap => knap.addEventListener("click", filtrer));
         ingrediensKnapper.forEach(knap => knap.addEventListener("click", findOpskrifter));
 
         document.addEventListener("DOMContentLoaded", start);
-
-        function findOpskrifter() {
-            //console.log(this.dataset.ingrediens);
-            ingrediensValg = this.dataset.ingrediens;
-            visJson();
-        }
+        /*
+                function findOpskrifter() {
+                    //console.log(this.dataset.ingrediens);
+                    ingrediensValg = this.dataset.ingrediens;
+                    visJson();
+                }*/
 
         //først funktion, der kaldes efter DOM er loaded
         function start() {
@@ -671,27 +669,25 @@
 
 
         //funktion, der filtrerer personer (JSON)
-        function filtrer() {
-            aktuelt = this.textContent;
-            h1.textContent = aktuelt;
-            if (this.dataset.filter == "alle") {
+        function findOpskrifter() {
+            if (this.dataset.ingrediens == "alle") {
                 filterKnapper.forEach(knap => knap.classList.remove("valgt"));
                 this.classList.add("valgt");
-                filter = ["alle"];
+                ingrediensValg = ["alle"];
             } else {
                 filterKnapper[0].classList.remove("valgt");
-                if (filter.includes("alle")) {
+                if (ingrediensValg.includes("alle")) {
                     filter.shift();
                 }
                 if (this.classList.contains("valgt")) {
                     this.classList.remove("valgt");
-                    filter = filter.filter(item => item != this.dataset.filter); // filtrer det valgte filter fra filterlisten
+                    ingrediensValg = ingrediensValg.filter(item => item != this.dataset.ingrediens); // filtrer det valgte filter fra filterlisten
                 } else {
                     this.classList.add("valgt");
-                    filter.push(this.dataset.filter);
+                    ingrediensValg.push(this.dataset.ingrediens);
                 }
             }
-            vis(data);
+            visJson();
             console.log(this);
         }
 
@@ -711,38 +707,37 @@
 
         //funktion, der viser data (personer i dette filfælde) i liste view
         function visJson() {
+            console.log(ingrediensValg);
             const skabelon = document.querySelector("template").content; //select indhold af HTML-skabelon (article)
             const dest = document.querySelector("#item-liste"); //container til artikler med en person
             dest.textContent = "";
             //console.log(menu);
             menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
-                const ingArray = items.gsx$ingredienser.$t.split(","); // laver ingredienser til et array
+                //const ingArray = items.gsx$ingredienser.$t.split(","); // laver ingredienser til et array
                 //console.log(ingrediensValg, ingArray); //udskriver et array
-                if (ingArray.includes(ingrediensValg)) { //tjek hvilket køn, personen har, og sammellign med filter
-                    console.log(items);
+                ingrediensValg.forEach(ingrediens => {
+                    if (items.gsx$ingredienser.$t.includes(ingrediensValg)) { //tjek hvilket køn, personen har, og sammellign med filter
+                        //console.log(items);
 
-                    const klon = skabelon.cloneNode(true);
-                    //console.log(items);
+                        const klon = skabelon.cloneNode(true);
+                        //console.log(items);
 
-                    const h2 = klon.querySelector("h2");
-                    h2.textContent = items.gsx$navn.$t;
+                        const h2 = klon.querySelector("h2");
+                        h2.textContent = items.gsx$navn.$t;
 
-                    const img = klon.querySelector("img");
-                    klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
-                    img.alt = "Billede af " + items.navn;
+                        const img = klon.querySelector("img");
+                        klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
+                        img.alt = "Billede af " + items.navn;
 
-                    klon.querySelector(".items").addEventListener("click", () => {
-                        location.href = `detalje.html?id=${items.gsx$id.$t}`;
-                    });
-                    dest.appendChild(klon);
-                };
-
+                        klon.querySelector(".items").addEventListener("click", () => {
+                            location.href = `detalje.html?id=${items.gsx$id.$t}`;
+                        });
+                        dest.appendChild(klon);
+                    };
+                })
             });
         }
-
     </script>
 
     <footer>@Copyright ØSTBLOKKEN V2 | <b>Kontakt:</b> Telefon: +45 46 46 00 00 | Mail: kea@kea.dk | <b>Adresse:</b> Lygten 16, 2400 Nordvest | <b>CVR:</b> 316 562 06 </footer>
-</body>
-
-</html>
+</body></html>
