@@ -715,25 +715,32 @@
             menu.feed.entry.forEach(items => { //loop igennem JSON (personer)
                 //const ingArray = items.gsx$ingredienser.$t.split(","); // laver ingredienser til et array
                 //console.log(ingrediensValg, ingArray); //udskriver et array
-                ingrediensValg.forEach(ingrediens => {
-                    if (items.gsx$ingredienser.$t.includes(ingrediensValg)) { //tjek hvilket køn, personen har, og sammellign med filter
-                        //console.log(items);
+                let i = 0; //tæller (iterationer)
+                ingrediensValg.forEach(ingrediens => { //leder i array'et efter ingredienser
+                    if (items.gsx$ingredienser.$t.includes(ingrediens)) { //Gør at vi ikke tager de samme retter med flere gange
+                        i++;
+                        console.log(ingrediens);
+                        if (i == ingrediensValg.length) {
 
-                        const klon = skabelon.cloneNode(true);
-                        //console.log(items);
 
-                        const h2 = klon.querySelector("h2");
-                        h2.textContent = items.gsx$navn.$t;
+                            const klon = skabelon.cloneNode(true);
+                            //console.log(items);
 
-                        const img = klon.querySelector("img");
-                        klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
-                        img.alt = "Billede af " + items.navn;
+                            const h2 = klon.querySelector("h2");
+                            h2.textContent = items.gsx$navn.$t;
 
-                        klon.querySelector(".items").addEventListener("click", () => {
-                            location.href = `detalje.html?id=${items.gsx$id.$t}`;
-                        });
-                        dest.appendChild(klon);
-                    };
+                            const img = klon.querySelector("img");
+                            klon.querySelector(".billede").src = "img/small/" + items.gsx$billede.$t + "-sm.jpg";
+                            img.alt = "Billede af " + items.navn;
+
+                            klon.querySelector(".items").addEventListener("click", () => {
+                                location.href = `detalje.html?id=${items.gsx$id.$t}`;
+                            });
+                            dest.appendChild(klon);
+                        };
+                    }
+
+
                 })
             });
         }
